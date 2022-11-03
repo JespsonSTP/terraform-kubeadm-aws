@@ -8,8 +8,8 @@
     "builders" : [
         {
             "type" : "amazon-ebs",
-            "access_key" :"AKIA3GMNN42K4YWTN3V6",
-            "secret_key" :"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", 
+            //"access_key" :,
+            //"secret_key" :, 
             "ami_name" : "EKS-controller-0.0.1-{{timestamp}}",
             "ami_description" : "Amazon Linux Image with Jenkins Server",
             "region" : "us-east-1",
