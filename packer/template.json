@@ -1,0 +1,39 @@
+{
+    "variables" : { 
+        "region" : "AWS REGION",
+        "aws_profile": "AWS PROFILE",
+        "source_ami" : "AMAZON LINUX AMI ID",
+        "instance_type": "EC2 INSTANCE TYPE"
+    },
+    "builders" : [
+        {
+            "type" : "amazon-ebs",
+            "access_key" :"AKIA3GMNN42K4YWTN3V6",
+            "secret_key" :"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", 
+            "ami_name" : "EKS-controller-0.0.1-{{timestamp}}",
+            "ami_description" : "Amazon Linux Image with Jenkins Server",
+            "region" : "us-east-1",
+            "source_ami_filter": {
+                "filters": {
+                  "virtualization-type": "hvm",
+                  "name": "amzn2-ami-hvm*",
+                  "root-device-type": "ebs"
+                },
+                "owners": ["amazon"],
+                "most_recent": true
+            },
+            "instance_type" : "t2.micro",
+            "ssh_username" : "ec2-user", 
+            "force_deregister" : true,
+            "force_delete_snapshot" : true
+        }
+   ],
+    "provisioners" : [            {
+            "type" : "shell",
+            "script" : "./eksami.sh",
+            "execute_command" : "sudo -E -S sh '{{ .Path }}'"
+        }
+    ]
+}
+
+
