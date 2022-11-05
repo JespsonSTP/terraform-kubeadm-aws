@@ -53,3 +53,15 @@ variable "nodes_min_size" {
 variable "aws_key_pair" {
   type = string
 }
+variable "aws_access_key" {
+  type = string
+}
+variable "aws_secret_key" {
+  type = string
+}
+variable "ami" {
+  type = string
+}
+variable "pubroutid" {
+  type = string
+}

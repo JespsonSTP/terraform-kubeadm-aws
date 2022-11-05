@@ -31,8 +31,8 @@ kind: ClusterConfiguration
 apiServer:
   extraArgs:
     cloud-provider: aws
-clusterName: ${cluster_name}
-controlPlaneEndpoint: "${lb_dns_name}"
+clusterName: cheffapp-cluster
+controlPlaneEndpoint: api-cheffapp-cluster-e3acda254b0f0c70.elb.us-east-1.amazonaws.com
 controllerManager:
   extraArgs:
     cloud-provider: aws

@@ -8,6 +8,9 @@ variable "vpc_cidr" {
 variable "instance_type" {
   type = string
 }
+variable "ami" {
+  type = string
+}
 # EKS Cluster Input Variables
 variable "cluster_name" {
   description = "Name of the EKS cluster. Also used as a prefix in names of related resources."

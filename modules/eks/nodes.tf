@@ -82,7 +82,7 @@ resource "aws_lb_target_group" "control-plane" {
 # }
 resource "aws_launch_configuration" "masters-az01-k8s-local" {
   name_prefix          = "masters.${var.cluster_name}"
-  image_id             = data.aws_ami.ubuntu.id
+  image_id             = var.ami
   instance_type        = var.master_instance_type
   key_name             = var.aws_key_pair
   iam_instance_profile = aws_iam_instance_profile.terraform_k8s_master_role-Instance-Profile.id
@@ -135,7 +135,7 @@ resource "aws_autoscaling_group" "master-k8s-local-01" {
 
 resource "aws_launch_configuration" "worker-nodes-k8s-local" {
   name_prefix          = "nodes.${var.cluster_name}."
-  image_id             = data.aws_ami.ubuntu.id
+  image_id             = var.ami
   instance_type        = var.worker_instance_type
   key_name             = "newkey"
   iam_instance_profile = aws_iam_instance_profile.terraform_k8s_worker_role-Instance-Profile.id
@@ -153,6 +153,8 @@ EOT
     delete_on_termination = true
   }
 }
+
+
 resource "aws_autoscaling_group" "nodes-k8s" {
   name                 = "${var.cluster_name}_workers"
   launch_configuration = aws_launch_configuration.worker-nodes-k8s-local.id
